@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import FormComponent from "./components/formComponent";
+import AppComponent from "./components/app";
 ReactDom.render(
   <div className="container">
-    <FormComponent appName="React" />
+    <AppComponent />
   </div>,
   document.getElementById("root")
 );
