@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 class FormComponent extends Component {
+
   state = {
-    sex: "Male",
-    name: null,
-    email: null
-  };
+    user: {
+      name: '',
+      email: ''
+    }
+  }
+
+  componentDidMount() {
+    this.setState({user : this.props.location.state.user});
+  }
   updateModel = event => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -23,7 +29,8 @@ class FormComponent extends Component {
     this.props.updateItem(this.state);
   }
   render() {
-    return (
+     return (
+
       <div>
         <h1 className="text-center">Online user form</h1>
         <br />
@@ -36,7 +43,8 @@ class FormComponent extends Component {
                 className="form-control"
                 placeholder="Enter Name"
                 name="name"
-                onKeyUp={this.updateModel}
+                value={this.state.user.name}
+                onChange = {this.updateModel}
               />
             </div>
           </div>
@@ -47,12 +55,13 @@ class FormComponent extends Component {
                 type="email"
                 className="form-control"
                 name="email"
+                value = {this.state.user.email}
                 placeholder="Enter Email id"
                 onChange={this.updateModel}
               />
             </div>
           </div>
-          <div className="form-group row">
+          {/* <div className="form-group row">
             <label className="col-sm-2 col-form-label">Sex</label>
             <div className="col-sm-10">
               <div className="row">
@@ -81,8 +90,8 @@ class FormComponent extends Component {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> 
+          </div>*/}
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

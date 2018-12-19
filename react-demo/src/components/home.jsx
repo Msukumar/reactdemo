@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import User from './user'
 class Home extends Component {
   state = {
     data : []
   };
-
-  constructor(){
-    super();
-  }
 
   componentDidMount = () => {
     let self = this;
@@ -23,9 +20,10 @@ class Home extends Component {
     }
     render() {
       return (
-  <table class="table" style={{marginTop : 15}}>
-  <thead class="thead-dark">
+  <table className="table" style={{marginTop : 15}}>
+  <thead className="thead-dark">
     <tr>
+      <th scope="col">Action</th>
       <th scope="col">S.No</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
@@ -33,14 +31,11 @@ class Home extends Component {
     </tr>
   </thead>
   <tbody>
-    {this.state.data.map(item => {
-     return <tr>
-      <th scope="row">{item.id}</th>
-      <td>{item.name}</td>
-      <td>{item.email}</td>
-      <td>{item.phone}</td>
-    </tr>
-    })}
+    {
+      this.state.data.map(item => {
+        return <User value={item} key={item.id.toString()}/>
+      })
+    }
 
    
   </tbody>

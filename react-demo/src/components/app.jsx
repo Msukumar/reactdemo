@@ -5,6 +5,7 @@ import Home from "./home";
 import About from "./about";
 import NavBar from "./navBar";
 import ComponentLifeCycle from './componentlifecyclehooks'
+import ContactUs from './contactUs'
 class AppComponent extends Component {
   state = {};
   render() {
@@ -13,9 +14,10 @@ class AppComponent extends Component {
         <div>
           <NavBar />
           <Switch>
-            <Route exact path="/" render={() => <Redirect to="/UserForm" />} />
+            <Route exact path="/" render={() => <Redirect to="/Home" />} />
             <Route path="/Home" component={Home} exact />
             <Route path="/UserForm" component={FormComponent} />
+            <Route path="/ContactUs" component= {ContactUs}/>
             <Route path="/About" component={About} />
             <Route path="/ReactComponentLifeCycle" component={ComponentLifeCycle} />
           </Switch>
