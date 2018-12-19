@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 class FormComponent extends Component {
 
   state = {
@@ -15,12 +16,12 @@ class FormComponent extends Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-    this.setState(
-      {
-        [name]: value
+    const result = { ...this.props.location.state.user, [name] : value };
+     this.setState({
+      user :  result
       },
       () => {
-        console.log("total reuslt ===> ", this.state);
+       // console.log("total reuslt ===> ", this.state);
       }
     );
   };
@@ -28,13 +29,22 @@ class FormComponent extends Component {
   updatingItem() {
     this.props.updateItem(this.state);
   }
+
+  saveUser = (event) => {
+    const self = this;
+    event.preventDefault();
+    axios.put('https://jsonplaceholder.typicode.com/users/'+this.state.user.id ,  this.state.user)
+      .then(response => {
+        self.props.history.push('/Home');
+      });
+  }
   render() {
      return (
 
       <div>
         <h1 className="text-center">Online user form</h1>
         <br />
-        <form>
+        <form onSubmit={this.saveUser}>
           <div className="form-group row">
             <label className="col-sm-2 col-form-label">Name</label>
             <div className="col-sm-10">
