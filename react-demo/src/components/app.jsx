@@ -4,7 +4,7 @@ import FormComponent from "./form";
 import Home from "./home";
 import About from "./about";
 import NavBar from "./navBar";
-
+import ComponentLifeCycle from './componentlifecyclehooks'
 class AppComponent extends Component {
   state = {};
   render() {
@@ -17,6 +17,7 @@ class AppComponent extends Component {
             <Route path="/Home" component={Home} exact />
             <Route path="/UserForm" component={FormComponent} />
             <Route path="/About" component={About} />
+            <Route path="/ReactComponentLifeCycle" component={ComponentLifeCycle} />
           </Switch>
         </div>
       </BrowserRouter>
