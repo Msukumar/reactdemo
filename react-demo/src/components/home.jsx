@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import axios from 'axios';
 import User from './user';
 
-
-
 class Home extends Component {
   state = {
     data : []
   };
+
+  deleteUser = (id) => {
+    const result = this.state.data.filter(person => person.id !== id);
+    this.setState({
+      data : result
+    });
+  }
 
   componentDidMount = () => {
     let self = this;
@@ -36,7 +41,7 @@ class Home extends Component {
   <tbody>
     {
       this.state.data.map(item => {
-        return <User value={item} key={item.id.toString()}/>
+        return <User value={item} key={item.id.toString()} delete={this.deleteUser}/>
       })
     }
 
